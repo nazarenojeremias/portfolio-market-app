@@ -3,6 +3,7 @@ import flet.canvas as cv
 import pandas as pd
 from datetime import datetime
 from motor_datos import cargar_y_calcular_portafolio
+import os
 
 def fmt_eur(valor):
     """Formatea al estilo europeo: € 15.218,12"""
@@ -558,4 +559,10 @@ def main(page: ft.Page):
     page.add(header, ft.Divider(height=10, color="transparent"), contenedor_tarjetas)
     actualizar_datos()
 
-ft.run(main)
+# ft.run(main)
+if __name__ == "__main__":
+    # Obtiene el puerto asignado por la nube (Render, Railway, etc.) o usa el 8000 por defecto para pruebas locales
+    port = int(os.environ.get("PORT", 8000))
+    
+    # Inicia la app en modo web accesible desde la red
+    ft.app(target=main, view=ft.WEB_BROWSER, port=port, host="0.0.0.0")
