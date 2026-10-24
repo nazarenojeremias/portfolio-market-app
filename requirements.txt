@@ -1,5 +1,5 @@
 flet==0.25.2
 fastapi==0.110.3
 uvicorn==0.29.0
-pandas
+pandas>=2.2,<3
 yfinance
