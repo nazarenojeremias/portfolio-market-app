@@ -54,8 +54,8 @@ def main(page: ft.Page):
         return ft.Container(
             bgcolor="#161F30",
             border_radius=16,
-            padding=ft.Padding.symmetric(horizontal=18, vertical=14),
-            border=ft.Border.all(1, "#263859"),
+            padding=ft.padding.symmetric(horizontal=18, vertical=14),
+            border=ft.border.all(1, "#263859"),
             content=ft.Row(
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                 vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -71,7 +71,7 @@ def main(page: ft.Page):
                     ft.Container(
                         bgcolor="#112A22" if es_pos else "#2C1518",
                         border_radius=10,
-                        padding=ft.Padding.symmetric(horizontal=10, vertical=6),
+                        padding=ft.padding.symmetric(horizontal=10, vertical=6),
                         content=ft.Column(
                             spacing=1,
                             horizontal_alignment=ft.CrossAxisAlignment.END,
@@ -104,8 +104,8 @@ def main(page: ft.Page):
 
                 filas_activos.append(
                     ft.Container(
-                        padding=ft.Padding.symmetric(horizontal=10, vertical=6),
-                        border=ft.Border.only(bottom=ft.BorderSide(1, "#21262D")),
+                        padding=ft.padding.symmetric(horizontal=10, vertical=6),
+                        border=ft.border.only(bottom=ft.borderSide(1, "#21262D")),
                         content=ft.Row(
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                             controls=[
@@ -139,8 +139,8 @@ def main(page: ft.Page):
             visible=False,
             bgcolor="#0D1117",
             border_radius=8,
-            margin=ft.Margin.only(top=4),
-            padding=ft.Padding.symmetric(vertical=4, horizontal=4),
+            margin=ft.margin.only(top=4),
+            padding=ft.padding.symmetric(vertical=4, horizontal=4),
             content=ft.Column(spacing=2, controls=filas_activos),
         )
 
@@ -156,7 +156,7 @@ def main(page: ft.Page):
         cabecera_broker = ft.Container(
             bgcolor="#161B22",
             border_radius=10,
-            padding=ft.Padding.symmetric(horizontal=12, vertical=9),
+            padding=ft.padding.symmetric(horizontal=12, vertical=9),
             on_click=toggle_broker,
             ink=True,
             content=ft.Row(
@@ -213,7 +213,7 @@ def main(page: ft.Page):
             bgcolor="#1E242C",
             border_radius=18,
             padding=18,
-            border=ft.Border.all(1, "#30363D"),
+            border=ft.border.all(1, "#30363D"),
             content=ft.Column(
                 spacing=10,
                 controls=[
@@ -226,7 +226,7 @@ def main(page: ft.Page):
                                     ft.Container(
                                         bgcolor=color_badge,
                                         border_radius=6,
-                                        padding=ft.Padding.symmetric(horizontal=6, vertical=2),
+                                        padding=ft.padding.symmetric(horizontal=6, vertical=2),
                                         content=ft.Text(codigo_badge, size=11, weight=ft.FontWeight.BOLD, color="#FFFFFF"),
                                     ),
                                     ft.Text(titulo, size=16, weight=ft.FontWeight.W_600, color="#E6EDF3"),
@@ -239,7 +239,7 @@ def main(page: ft.Page):
                     ft.Container(
                         bgcolor=bg_badge,
                         border_radius=8,
-                        padding=ft.Padding.symmetric(horizontal=10, vertical=5),
+                        padding=ft.padding.symmetric(horizontal=10, vertical=5),
                         content=ft.Text(
                             f"{signo}{fmt_eur(ganancia)}  ({signo}{rend_pct:.2f}%)",
                             size=13,
@@ -380,7 +380,7 @@ def main(page: ft.Page):
                     ft.Container(
                         bgcolor="#1F6FEB" if activo else "#161B22",
                         border_radius=8,
-                        padding=ft.Padding.symmetric(horizontal=10, vertical=5),
+                        padding=ft.padding.symmetric(horizontal=10, vertical=5),
                         on_click=click_reg,
                         ink=True,
                         content=ft.Text(texto, size=12, weight=ft.FontWeight.BOLD if activo else ft.FontWeight.NORMAL, color="#FFFFFF" if activo else "#8B949E"),
@@ -401,7 +401,7 @@ def main(page: ft.Page):
                     ft.Container(
                         bgcolor="#238636" if activo else "#161B22",
                         border_radius=8,
-                        padding=ft.Padding.symmetric(horizontal=10, vertical=5),
+                        padding=ft.padding.symmetric(horizontal=10, vertical=5),
                         on_click=click_met,
                         ink=True,
                         content=ft.Text(texto, size=11, weight=ft.FontWeight.BOLD if activo else ft.FontWeight.NORMAL, color="#FFFFFF" if activo else "#8B949E"),
@@ -422,7 +422,7 @@ def main(page: ft.Page):
                     ft.Container(
                         bgcolor="#30363D" if activo else "transparent",
                         border_radius=6,
-                        padding=ft.Padding.symmetric(horizontal=8, vertical=4),
+                        padding=ft.padding.symmetric(horizontal=8, vertical=4),
                         on_click=click_rng,
                         ink=True,
                         content=ft.Text(cod, size=11, weight=ft.FontWeight.BOLD if activo else ft.FontWeight.NORMAL, color="#58A6FF" if activo else "#8B949E"),
@@ -436,7 +436,7 @@ def main(page: ft.Page):
             bgcolor="#1E242C",
             border_radius=18,
             padding=18,
-            border=ft.Border.all(1, "#30363D"),
+            border=ft.border.all(1, "#30363D"),
             content=ft.Column(
                 spacing=10,
                 controls=[
@@ -456,8 +456,8 @@ def main(page: ft.Page):
                     ft.Container(
                         bgcolor="#161B22",
                         border_radius=12,
-                        padding=ft.Padding.symmetric(horizontal=10, vertical=10),
-                        alignment=ft.Alignment.CENTER,
+                        padding=ft.padding.symmetric(horizontal=10, vertical=10),
+                        alignment=ft.alignment.CENTER,
                         content=lienzo,
                     ),
                     ft.Row(
@@ -518,8 +518,8 @@ def main(page: ft.Page):
             # Footer con referencias de cotizaciones del día
             contenedor_tarjetas.controls.append(
                 ft.Container(
-                    padding=ft.Padding.only(top=4),
-                    alignment=ft.Alignment.CENTER,
+                    padding=ft.padding.only(top=4),
+                    alignment=ft.alignment.CENTER,
                     content=ft.Text(
                         f"EUR/USD: {fx['EUR_USD_HOY']:.4f}  •  MEP: ${fx['USD_ARS_HOY']:,.0f}  •  UVA: ${fx['UVA_HOY']:,.2f}",
                         size=11, color="#8B949E", text_align=ft.TextAlign.CENTER
