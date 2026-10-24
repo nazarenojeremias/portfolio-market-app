@@ -105,7 +105,7 @@ def main(page: ft.Page):
                 filas_activos.append(
                     ft.Container(
                         padding=ft.padding.symmetric(horizontal=10, vertical=6),
-                        border=ft.border.only(bottom=ft.borderside(1, "#21262D")),
+                        border=ft.border.only(bottom=ft.BorderSide(1, "#21262D")),
                         content=ft.Row(
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                             controls=[
