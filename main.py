@@ -457,7 +457,7 @@ def main(page: ft.Page):
                         bgcolor="#161B22",
                         border_radius=12,
                         padding=ft.padding.symmetric(horizontal=10, vertical=10),
-                        alignment=ft.Alignment.CENTER,
+                        alignment=ft.alignment.center,
                         content=lienzo,
                     ),
                     ft.Row(
@@ -519,7 +519,7 @@ def main(page: ft.Page):
             contenedor_tarjetas.controls.append(
                 ft.Container(
                     padding=ft.padding.only(top=4),
-                    alignment=ft.Alignment.CENTER,
+                    alignment=ft.alignment.center,
                     content=ft.Text(
                         f"EUR/USD: {fx['EUR_USD_HOY']:.4f}  •  MEP: ${fx['USD_ARS_HOY']:,.0f}  •  UVA: ${fx['UVA_HOY']:,.2f}",
                         size=11, color="#8B949E", text_align=ft.TextAlign.CENTER
