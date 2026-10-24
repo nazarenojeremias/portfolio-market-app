@@ -150,14 +150,14 @@ def construir_serie_historica(df, fx, tickers_mercado):
 def cargar_y_calcular_portafolio():
     print("1. Leyendo Google Sheet...")
     df_raw = pd.read_csv(CSV_URL)
-    
+        
     cols_presentes = [c for c in COLUMNAS_BASE if c in df_raw.columns]
     df = df_raw[cols_presentes].copy()
     if "Maturity" not in df.columns:
         df["Maturity"] = pd.NaT
 
-    df["Data"] = pd.to_datetime(df["Data"], dayfirst=True, errors="coerce").dt.normalize()
-    df["Maturity"] = pd.to_datetime(df["Maturity"], dayfirst=True, errors="coerce").dt.normalize()
+    df["Data"] = pd.to_datetime(df["Data"], dayfirst=True, errors="coerce").dt.normalize().astype("datetime64[ns]")
+    df["Maturity"] = pd.to_datetime(df["Maturity"], dayfirst=True, errors="coerce").dt.normalize().astype("datetime64[ns]")
     df = df.dropna(subset=["Data"]).sort_values("Data").reset_index(drop=True)
 
     cols_num = ["Shares Buy", "Cost Per Share Buy", "Shares Sell", "Cost Per Share Sell", "Tasa_Anual", "Commission"]
@@ -167,7 +167,6 @@ def cargar_y_calcular_portafolio():
     print("2. Descargando series históricas de tipos de cambio y precios...")
     fecha_min = df["Data"].min().strftime("%Y-%m-%d")
     fx = obtener_datos_mercado_y_fx(fecha_min)
-    print(f"   -> Hoy: EUR/USD: {fx['EUR_USD_HOY']:.4f} | Dólar MEP: ${fx['USD_ARS_HOY']:.2f} | Euro MEP: ${fx['EUR_ARS_HOY']:.2f} | UVA: ${fx['UVA_HOY']:.2f}")
 
     df = pd.merge_asof(df, fx["hist_eurusd"], left_on="Data", right_on="Fecha", direction="backward")
     df = pd.merge_asof(df, fx["hist_usdars"], left_on="Data", right_on="Fecha", direction="backward")
@@ -246,7 +245,6 @@ def cargar_y_calcular_portafolio():
         resumen_activo["Ganancia_EUR"] / resumen_activo["Invertido_EUR"].replace(0, pd.NA)
     ) * 100
 
-    print("3. Construyendo serie histórica para el gráfico...")
     series_historicas = construir_serie_historica(df, fx, tickers_mercado)
 
     return {
@@ -257,6 +255,5 @@ def cargar_y_calcular_portafolio():
         "series_historicas": series_historicas,
         "df": df
     }
-
 if __name__ == "__main__":
     cargar_y_calcular_portafolio()
